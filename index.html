@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla de Consultores</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    var selectedConsultors = [];
+
+    function selectConsultor(consultorName) {
+      if (!selectedConsultors.includes(consultorName)) {
+        selectedConsultors.push(consultorName);
+        updateSelectedConsultors();
+      }
+    }
+
+    function removeConsultor(index) {
+      selectedConsultors.splice(index, 1);
+      updateSelectedConsultors();
+    }
+
+    function updateSelectedConsultors() {
+      var list = document.getElementById('selected-consultors');
+      list.innerHTML = '';
+      selectedConsultors.forEach(function (consultor, index) {
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(consultor));
+        li.onclick = function () { removeConsultor(index); };
+        li.classList.add('consultor');
+        list.appendChild(li);
+      });
+    }
+
+  </script>
+</head>
+
+<body>
+
+  <div class="navbar">
+    <div>
+      <a class="nav-button" href="#home">Agence</a>
+      <a class="nav-button" href="#projects">Projetos</a>
+      <a class="nav-button" href="#admin">Administrativo</a>
+      <a class="nav-button" href="#admin">Comercial</a>
+      <a class="nav-button" href="#admin">Financeiro</a>
+      <a class="nav-button" href="#admin">Usuário</a>
+      <a class="nav-button" href="#admin">Salir</a>
+    </div>
+    <div>
+      <img src="./img/logo.gif" alt="logo">
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="date-selector">
+      <label for="start-date">Período:</label>
+      <select id="start-date">
+        <option value="set-2007">Set 2007</option>
+      </select>
+      <span>a</span>
+      <select id="end-date">
+        <option value="set-2007">Set 2007</option>
+      </select>
+    </div>
+
+    <div class="tables">
+
+      <div class="consultor-list-container">
+        <div class="consultor" onclick="selectConsultor('Consultor 1')">Consultor 1</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 2')">Consultor 2</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 3')">Consultor 3</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 4')">Consultor 4</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 5')">Consultor 5</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 6')">Consultor 6</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 7')">Consultor 7</div>
+        <div class="consultor" onclick="selectConsultor('Consultor 8')">Consultor 8</div>
+      </div>
+
+      <div class="selected-consultors">
+        <strong>Consultores Seleccionados</strong>
+        <ul id="selected-consultors"></ul>
+      </div>
+
+      <form class="report-buttons" name="Generar-reporte.php" method="post">
+        <button type="submit">Relatório</button>
+        <button type="submit">Gráfico</button>
+        <button type="submit">Pizza</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+</html>
